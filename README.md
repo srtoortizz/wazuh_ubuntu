@@ -39,7 +39,6 @@ Comprobamos que todo funcione correctamente.
 
 ![check_wazuh_dashboard](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/526a6673-46c2-423f-bd43-6fb236604dfe)
 
-![dashboard](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/e6257a2c-2be2-49fa-a980-1087ebfcd9e2)
 
 ### 2. Configuración del Agente Wazuh en Windows Server 2022
 
@@ -94,7 +93,12 @@ Comprobamos que todo funcione correctamente.
 2. **Prueba de detección**:
     Realiza un inicio de sesión SSH desde Kali Linux a Windows Server 2022 para verificar que los eventos son correctamente capturados por Wazuh.
 
+   ![kali_ssh](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/6041d2ba-b744-4b33-a6c5-099592d5a68a)
+
+
 ### 4. Configuración del Envío de Alertas por Correo Electrónico
+
+Primero deberemos de instalar nuestro servidor de Correos SMTP
 
 1. **Configura el servidor SMTP en Wazuh**:
     Edita el archivo `ossec.conf` en el servidor Wazuh para añadir la configuración SMTP. Un ejemplo de configuración SMTP sería:
