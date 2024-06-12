@@ -20,7 +20,7 @@ Este proyecto documenta la instalación y configuración de un servidor Wazuh en
 1. **Actualiza los paquetes de tu sistema**:
     ```bash
     sudo apt-get update && sudo apt-get upgrade
-    curl -O https://packages.wazuh.com/4.3/wazuh-install.sh
+  
     ```
 
 2. **Instala Wazuh**:
