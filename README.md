@@ -4,7 +4,8 @@
 
 Este proyecto documenta la instalación y configuración de un servidor Wazuh en una máquina virtual para monitorizar eventos de seguridad de otra máquina con Windows Server 2022. El objetivo es detectar eventos de seguridad, como inicios de sesión mediante SSH desde otra máquina virtual (Kali Linux), y enviar alertas de seguridad por correo electrónico utilizando SMTP.
 
-![Esquema_implementación drawio](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/676b57c7-4cf6-4383-b005-e59bfa9f9fdd)
+![diagrama_implementacion drawio](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/69dac520-b02d-4c8a-9331-40b74f821cb3)
+
 
 ## Prerrequisitos
 
