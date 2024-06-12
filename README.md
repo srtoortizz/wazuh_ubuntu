@@ -20,10 +20,14 @@ Este proyecto documenta la instalación y configuración de un servidor Wazuh en
 1. **Actualiza los paquetes de tu sistema**:
     ```bash
     sudo apt-get update && sudo apt-get upgrade
+    curl -O https://packages.wazuh.com/4.3/wazuh-install.sh
     ```
 
 2. **Instala Wazuh**:
     Sigue las [instrucciones oficiales de instalación de Wazuh](https://documentation.wazuh.com/current/installation-guide/index.html) para tu distribución de Linux.
+ ```bash
+ curl -O https://packages.wazuh.com/4.3/wazuh-install.sh
+ ```
 
 ![Wazuh_install](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/45790545-7b09-4ed6-abdb-5b3d8b70fef0)
 
@@ -55,35 +59,8 @@ Comprobamos que todo funcione correctamente.
 3. **Configura el agente**:
     Edita el archivo `ossec.conf` en el directorio de instalación del agente para asegurarte de que está correctamente configurado para comunicarse con el servidor Wazuh. Aquí tienes un ejemplo de configuración del archivo `ossec.conf`:
 
-    ```xml
-    <!--
-      Wazuh - Agent - Default configuration for Windows
-      More info at: https://documentation.wazuh.com
-      Mailing list: https://groups.google.com/forum/#!forum/wazuh
-    -->
+   ![image](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/08bf07c2-e57b-4876-b5d8-f00b61681568)
 
-    <ossec_config>
-      <client>
-        <server>
-          <address>192.168.3.11</address>
-          <port>1514</port>
-          <protocol>tcp</protocol>
-        </server>
-        <config-profile>windows, windows2012R2, windows-server, windows-server-2022</config-profile>
-        <crypto_method>aes</crypto_method>
-        <notify_time>10</notify_time>
-        <time-reconnect>60</time-reconnect>
-        <auto_restart>yes</auto_restart>
-      </client>
-
-      <!-- Agent buffer options -->
-      <client_buffer>
-        <disabled>no</disabled>
-        <queue_size>5000</queue_size>
-        <events_per_second>500</events_per_second>
-      </client_buffer>
-    </ossec_config>
-    ```
 
 ### 3. Monitorización de Eventos de Seguridad
 
@@ -100,7 +77,24 @@ Comprobamos que todo funcione correctamente.
 
 Primero deberemos de instalar nuestro servidor de Correos SMTP
 
+```bash
+ apt-get update && apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
+
+ ```
+
+Editar el fichero  sasl_passwd con la estructura [smtp.gmail.com] :Puerto (587) Correo electronico : contraeseña
+![correo_smtp_pass](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/b64d4b9d-3410-4682-a142-cac419313b2c)
+
+IMPORTANTE:
+
+La contraseña añadida es la proporcionada con "contraseñas de aplicaciones" en el apartado seguridad
+
+https://support.google.com/mail/answer/185833?hl=es-419#
+
+
 1. **Configura el servidor SMTP en Wazuh**:
+
+   
     Edita el archivo `ossec.conf` en el servidor Wazuh para añadir la configuración SMTP. Un ejemplo de configuración SMTP sería:
     ```xml
     <global>
@@ -111,8 +105,22 @@ Primero deberemos de instalar nuestro servidor de Correos SMTP
     </global>
     ```
 
-2. **Prueba de envío de alertas**:
-    Genera un evento de seguridad y verifica que se envía una alerta por correo electrónico. Para más detalles sobre la configuración de notificaciones por correo, revisa la [guía de notificaciones por correo de Wazuh](https://documentation.wazuh.com/current/user-manual/notifications/email-notification/index.html).
+    ![Configuracion_smtp](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/fcd54ee7-9241-4754-9fec-f6283c7cda2b)
+
+
+Despues de finalizar la configuración de nuestro SMTP podremos enviar un mensaje de test para comprobar que funciona correctamente el envio de correos
+![test_correo_](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/1319941c-2fd5-4b49-a943-1b3eacf30d27)
+![test_ENVIO](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/1ec7690e-474b-4333-9405-e2634cab7a43)
+
+
+
+3. **Prueba de envío de alertas**:
+
+Genera un evento de seguridad y verifica que se envía una alerta por correo electrónico. Para más detalles sobre la configuración de notificaciones por correo, revisa la [guía de notificaciones por correo de Wazuh](https://documentation.wazuh.com/current/user-manual/notifications/email-notification/index.html).
+
+![envioalertacorreo](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/fae11491-49ed-409a-bc40-3ddfd06ae199)
+
+
 
 ## Tecnologías Utilizadas
 
@@ -132,3 +140,16 @@ La implementación de Wazuh en este entorno permite una monitorización eficaz d
 - [Configuración del Agente Wazuh](https://documentation.wazuh.com/current/user-manual/agents/registering-agents/index.html)
 - [Reglas de Wazuh](https://documentation.wazuh.com/current/user-manual/ruleset/ruleset-xml-syntax/index.html)
 - [Notificaciones por Correo en Wazuh](https://documentation.wazuh.com/current/user-manual/notifications/email-notification/index.html)
+
+
+## Ficheros Importantes
+
+/var/ossec/etc/ossec.conf ---> Fichero server wazuh
+C:\Program Files (x86)\ossec-agent\ossec.conf ---> Fichero agente wazuh
+/var/ossec/ruleset/rules/ ---> Reglas predefinidas que se pueden editar y adaptarlas a las necesidades del usurio.
+
+![rules](https://github.com/srtoortizz/wazuh_ubuntu/assets/57291029/59300f70-5bdd-4ba4-bc61-591a0e78e818)
+
+
+
+
