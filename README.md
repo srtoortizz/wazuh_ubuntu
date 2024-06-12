@@ -87,7 +87,7 @@ Editar el fichero  sasl_passwd con la estructura [smtp.gmail.com] :Puerto (587) 
 
 IMPORTANTE:
 
-La contraseña añadida es la proporcionada con "contraseñas de aplicaciones" en el apartado seguridad
+La contraseña añadida es la proporcionada con "contraseñas de aplicaciones" en el apartado seguridad de "gmail"
 
 https://support.google.com/mail/answer/185833?hl=es-419#
 
