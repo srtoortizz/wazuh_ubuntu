@@ -137,9 +137,8 @@ La implementación de Wazuh en este entorno permite una monitorización eficaz d
 
 - [Documentación Oficial de Wazuh](https://documentation.wazuh.com/current/index.html)
 - [Guía de Instalación de Wazuh](https://documentation.wazuh.com/current/installation-guide/index.html)
-- [Configuración del Agente Wazuh](https://documentation.wazuh.com/current/user-manual/agents/registering-agents/index.html)
-- [Reglas de Wazuh](https://documentation.wazuh.com/current/user-manual/ruleset/ruleset-xml-syntax/index.html)
-- [Notificaciones por Correo en Wazuh](https://documentation.wazuh.com/current/user-manual/notifications/email-notification/index.html)
+- [Configuración del Agente Wazuh](https://documentation.wazuh.com/current/installation-guide/wazuh-agent/index.html)
+- [Notificaciones por Correo en Wazuh](https://documentation.wazuh.com/current/user-manual/manager/manual-email-report/smtp-authentication.html)
 
 
 ## Ficheros Importantes
